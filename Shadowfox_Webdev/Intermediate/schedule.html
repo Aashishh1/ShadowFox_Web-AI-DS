@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MI 2025 Schedule | Mumbai Indians</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Schedule Page Specific Styles */
+        :root {
+            --mi-blue: #004ba0;
+            --mi-gold: #ffc107;
+            --mi-dark: #002d62;
+            --mi-light: #e6f0fa;
+        }
+        
+        .schedule-hero {
+            background: linear-gradient(rgba(0, 75, 160, 0.8), rgba(0, 75, 160, 0.8)), 
+                        url('images/schedule-hero.jpg') no-repeat center center/cover;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .schedule-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--mi-gold);
+        }
+        
+        .schedule-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .schedule-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: 2px solid var(--mi-blue);
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--mi-blue);
+            color: white;
+        }
+        
+        .schedule-tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 2rem;
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            border-bottom: 2px solid var(--mi-gold);
+            color: var(--mi-blue);
+        }
+        
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .match-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        .match-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .match-header {
+            background-color: var(--mi-blue);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .match-date {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .match-venue {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .match-body {
+            padding: 1.5rem;
+        }
+        
+        .teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 40%;
+        }
+        
+        .team img {
+            height: 60px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-name {
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vs {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--mi-gold);
+        }
+        
+        .match-time {
+            text-align: center;
+            margin: 1rem 0;
+            font-weight: 600;
+            color: var(--mi-blue);
+        }
+        
+        .match-status {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-upcoming {
+            background-color: var(--mi-light);
+            color: var(--mi-blue);
+        }
+        
+        .status-live {
+            background-color: #ffeb3b;
+            color: #c62828;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .status-completed {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .match-result {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            font-weight: 600;
+            color: var(--mi-blue);
+        }
+        
+        .match-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+        
+        .action-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--mi-blue);
+            color: white;
+            border: 2px solid var(--mi-blue);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--mi-dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--mi-blue);
+            border: 2px solid var(--mi-blue);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--mi-light);
+        }
+        
+        .no-matches {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .schedule-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .match-actions {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="Images/mi-logo.png" alt="Mumbai Indians Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Main.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="schedule.html" class="active"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                    <li><a href="fan.html"><i class="fas fa-chevron-right"></i> Fan</a> </li> 
+                    <li><a href="players.html"><i class="fas fa-users"></i> Players</a></li>
+                    <li><a href="news.html"><i class="fas fa-images"></i> News</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="schedule-hero">
+        <h1>IPL 2025 SCHEDULE</h1>
+        <p>Follow Mumbai Indians' journey this season</p>
+    </section>
+
+    <div class="schedule-container">
+        <div class="schedule-filter">
+            <button class="filter-btn active">All Matches</button>
+            <button class="filter-btn">Home</button>
+            <button class="filter-btn">Away</button>
+            <button class="filter-btn">Playoffs</button>
+        </div>
+        
+        <div class="schedule-tabs">
+            <div class="tab-btn active">League Stage</div>
+            <div class="tab-btn">Playoffs</div>
+            <div class="tab-btn">Results</div>
+        </div>
+        
+        <div class="schedule-grid">
+            <!-- Match 1 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <div class="match-date">March 22, 2025</div>
+                    <div class="match-venue">Wankhede Stadium, Mumbai</div>
+                </div>
+                <div class="match-body">
+                    <div class="teams">
+                        <div class="team">
+                            <img src="Images/mi-logo.png" alt="Mumbai Indians">
+                            <div class="team-name">Mumbai Indians</div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <img src="Images/Csk.png" alt="Chennai Super Kings">
+                            <div class="team-name">Chennai Super Kings</div>
+                        </div>
+                    </div>
+                    <div class="match-time">
+                        <i class="far fa-clock"></i> 7:30 PM IST
+                    </div>
+                    <div class="match-status status-completed">COMPLETED</div>
+                    <div class="match-result">
+                        MI won by 5 wickets
+                    </div>
+                    <div class="match-actions">
+                        <a href="#" class="action-btn btn-primary">Highlights</a>
+                        <a href="#" class="action-btn btn-outline">Scorecard</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Match 2 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <div class="match-date">March 26, 2025</div>
+                    <div class="match-venue">M. Chinnaswamy Stadium, Bengaluru</div>
+                </div>
+                <div class="match-body">
+                    <div class="teams">
+                        <div class="team">
+                            <img src="Images/RCB.png" alt="Royal Challengers Bangalore">
+                            <div class="team-name">Royal Challengers</div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <img src="Images/mi-logo.png" alt="Mumbai Indians">
+                            <div class="team-name">Mumbai Indians</div>
+                        </div>
+                    </div>
+                    <div class="match-time">
+                        <i class="far fa-clock"></i> 7:30 PM IST
+                    </div>
+                    <div class="match-status status-completed">COMPLETED</div>
+                    <div class="match-result">
+                        RCB won by 12 runs
+                    </div>
+                    <div class="match-actions">
+                        <a href="#" class="action-btn btn-primary">Highlights</a>
+                        <a href="#" class="action-btn btn-outline">Scorecard</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Match 3 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <div class="match-date">March 30, 2025</div>
+                    <div class="match-venue">Wankhede Stadium, Mumbai</div>
+                </div>
+                <div class="match-body">
+                    <div class="teams">
+                        <div class="team">
+                            <img src="Images/mi-logo.png" alt="Mumbai Indians">
+                            <div class="team-name">Mumbai Indians</div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <img src="Images/DC.png" alt="Delhi Capitals">
+                            <div class="team-name">Delhi Capitals</div>
+                        </div>
+                    </div>
+                    <div class="match-time">
+                        <i class="far fa-clock"></i> 3:30 PM IST
+                    </div>
+                    <div class="match-status status-completed">COMPLETED</div>
+                    <div class="match-result">
+                        MI won by 8 wickets
+                    </div>
+                    <div class="match-actions">
+                        <a href="#" class="action-btn btn-primary">Highlights</a>
+                        <a href="#" class="action-btn btn-outline">Scorecard</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Match 4 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <div class="match-date">April 3, 2025</div>
+                    <div class="match-venue">Narendra Modi Stadium, Ahmedabad</div>
+                </div>
+                <div class="match-body">
+                    <div class="teams">
+                        <div class="team">
+                            <img src="Images/GT.png" alt="Gujarat Titans">
+                            <div class="team-name">Gujarat Titans</div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <img src="Images/mi-logo.png" alt="Mumbai Indians">
+                            <div class="team-name">Mumbai Indians</div>
+                        </div>
+                    </div>
+                    <div class="match-time">
+                        <i class="far fa-clock"></i> 7:30 PM IST
+                    </div>
+                    <div class="match-status status-upcoming">UPCOMING</div>
+                    <div class="match-actions">
+                        <a href="#" class="action-btn btn-primary">Remind Me</a>
+                        <a href="#" class="action-btn btn-outline">Preview</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Match 5 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <div class="match-date">April 8, 2025</div>
+                    <div class="match-venue">Wankhede Stadium, Mumbai</div>
+                </div>
+                <div class="match-body">
+                    <div class="teams">
+                        <div class="team">
+                            <img src="Images/mi-logo.png" alt="Mumbai Indians">
+                            <div class="team-name">Mumbai Indians</div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <img src="Images/PK.png" alt="Punjab Kings">
+                            <div class="team-name">Punjab Kings</div>
+                        </div>
+                    </div>
+                    <div class="match-time">
+                        <i class="far fa-clock"></i> 7:30 PM IST
+                    </div>
+                    <div class="match-status status-upcoming">UPCOMING</div>
+                    <div class="match-actions">
+                        <a href="#" class="action-btn btn-primary">Buy Tickets</a>
+                        <a href="#" class="action-btn btn-outline">Preview</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Match 6 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <div class="match-date">April 12, 2025</div>
+                    <div class="match-venue">Eden Gardens, Kolkata</div>
+                </div>
+                <div class="match-body">
+                    <div class="teams">
+                        <div class="team">
+                            <img src="Images/KKR.png" alt="Kolkata Knight Riders">
+                            <div class="team-name">Kolkata Knight Riders</div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <img src="Images/mi-logo.png" alt="Mumbai Indians">
+                            <div class="team-name">Mumbai Indians</div>
+                        </div>
+                    </div>
+                    <div class="match-time">
+                        <i class="far fa-clock"></i> 7:30 PM IST
+                    </div>
+                    <div class="match-status status-upcoming">UPCOMING</div>
+                    <div class="match-actions">
+                        <a href="#" class="action-btn btn-primary">Remind Me</a>
+                        <a href="#" class="action-btn btn-outline">Preview</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Match 7 - Live Match Example -->
+            <div class="match-card">
+                <div class="match-header">
+                    <div class="match-date">April 16, 2025</div>
+                    <div class="match-venue">Wankhede Stadium, Mumbai</div>
+                </div>
+                <div class="match-body">
+                    <div class="teams">
+                        <div class="team">
+                            <img src="Images/mi-logo.png" alt="Mumbai Indians">
+                            <div class="team-name">Mumbai Indians</div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <img src="Images/SRH.png" alt="Sunrisers Hyderabad">
+                            <div class="team-name">Sunrisers Hyderabad</div>
+                        </div>
+                    </div>
+                    <div class="match-time">
+                        <i class="far fa-clock"></i> 7:30 PM IST
+                    </div>
+                    <div class="match-status status-live">LIVE NOW</div>
+                    <div class="match-result">
+                        MI 145/3 (15.2 ov) vs SRH 182/6
+                    </div>
+                    <div class="match-actions">
+                        <a href="#" class="action-btn btn-primary">Watch Live</a>
+                        <a href="#" class="action-btn btn-outline">Live Score</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Match 8 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <div class="match-date">April 20, 2025</div>
+                    <div class="match-venue">Rajiv Gandhi Stadium, Hyderabad</div>
+                </div>
+                <div class="match-body">
+                    <div class="teams">
+                        <div class="team">
+                            <img src="Images/SRH.png" alt="Sunrisers Hyderabad">
+                            <div class="team-name">Sunrisers Hyderabad</div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <img src="Images/mi-logo.png" alt="Mumbai Indians">
+                            <div class="team-name">Mumbai Indians</div>
+                        </div>
+                    </div>
+                    <div class="match-time">
+                        <i class="far fa-clock"></i> 3:30 PM IST
+                    </div>
+                    <div class="match-status status-upcoming">UPCOMING</div>
+                    <div class="match-actions">
+                        <a href="#" class="action-btn btn-primary">Remind Me</a>
+                        <a href="#" class="action-btn btn-outline">Preview</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="Images/mi-logo.png" alt="Mumbai Indians Logo">
+                <p>The Mumbai Indians are a franchise cricket team based in Mumbai, representing the city in the Indian Premier League.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="Main.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="schedule.html"><i class="fas fa-chevron-right"></i> Schedule</a></li>
+                    <li><a href="fan.html"><i class="fas fa-chevron-right"></i> Fan</a> </li> 
+                    <li><a href="players.html"><i class="fas fa-chevron-right"></i> Players</a></li>
+                    <li><a href="news.html"><i class="fas fa-chevron-right"></i> Matches</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Wankhede Stadium, D Road, Churchgate, Mumbai, Maharashtra 400020</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+91 22 2285 8000</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@mumbaiindians.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Mumbai Indians Fan Website. This is an unofficial fan site and not affiliated with Mumbai Indians or IPL.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mumbai Indians | Official Fan Site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="Images/mi-logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Enhanced Styles for Home Page */
+        :root {
+            --mi-blue: #004ba0;
+            --mi-gold: #ffc107;
+            --mi-dark: #002d62;
+            --mi-light: #e6f0fa;
+        }
+        
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--mi-blue);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo img {
+            height: 70px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 0.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background-color: var(--mi-gold);
+            color: var(--mi-blue);
+        }
+        
+        nav ul li a i {
+            margin-right: 8px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 75, 160, 0.8), rgba(0, 75, 160, 0.8)), 
+                        url('Shadowfox_Webdev/Intermediate/Images/stadium.png') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            z-index: 2;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--mi-gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: var(--mi-gold);
+            color: var(--mi-blue);
+            border: 2px solid var(--mi-gold);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--mi-gold);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--mi-blue);
+        }
+        
+        /* Countdown Section */
+        .countdown-section {
+            background-color: var(--mi-dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .countdown-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .countdown-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--mi-gold);
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .countdown-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            min-width: 100px;
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--mi-gold);
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .next-match-info {
+            margin-top: 2rem;
+        }
+        
+        .next-match-teams {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .team img {
+            height: 80px;
+            margin-bottom: 1rem;
+        }
+        
+        .vs {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--mi-gold);
+        }
+        
+        .match-details {
+            margin-top: 1rem;
+        }
+        
+        /* News Section */
+        .news-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--mi-blue);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--mi-gold);
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .news-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .news-image {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-date {
+            color: var(--mi-gold);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .news-date i {
+            margin-right: 5px;
+        }
+        
+        .news-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--mi-dark);
+        }
+        
+        .news-excerpt {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .read-more {
+            color: var(--mi-blue);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: var(--mi-gold);
+        }
+        
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Featured Players */
+        .featured-players {
+            padding: 5rem 0;
+            background-color: var(--mi-light);
+        }
+        
+        .players-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .players-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .players-slider::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .players-slider::-webkit-scrollbar-thumb {
+            background: var(--mi-blue);
+            border-radius: 10px;
+        }
+        
+        .player-slide {
+            min-width: 300px;
+            scroll-snap-align: start;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .player-image {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .player-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .player-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--mi-blue);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .player-details {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .player-name {
+            font-size: 1.4rem;
+            color: var(--mi-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .player-role {
+            color: var(--mi-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .player-type {
+            display: inline-block;
+            background-color: var(--mi-blue);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Sponsors Section */
+        .sponsors-section {
+            padding: 3rem 0;
+            background-color: white;
+            text-align: center;
+        }
+        
+        .sponsors-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .sponsor-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .sponsor-item:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        .sponsor-item img {
+            max-height: 60px;
+            max-width: 150px;
+            object-fit: contain;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--mi-dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-logo img {
+            height: 80px;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            color: #ccc;
+        }
+        
+        .footer-links h3, .footer-contact h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--mi-gold);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3::after, .footer-contact h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--mi-gold);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--mi-gold);
+            transform: translateX(5px);
+        }
+        
+        .footer-links a i {
+            margin-right: 8px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+        
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--mi-gold);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--mi-gold);
+            color: var(--mi-blue);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .header-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 70vh;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .next-match-teams {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul li {
+                margin: 0.2rem;
+            }
+            
+            nav ul li a {
+                padding: 0.6rem;
+                font-size: 0.9rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="Images/mi-logo.png" alt="Mumbai Indians Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Main.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="news.html"><i class="fas fa-calendar-alt"></i> News</a></li>
+                    <li><a href="fan.html"><i class="fas fa-chevron-right"></i> Fan</a> </li> 
+                    <li><a href="players.html"><i class="fas fa-users"></i> Players</a></li>
+                    <li><a href="schedule.html"><i class="fas fa-images"></i> Schedule</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>ONE FAMILY</h1>
+            <p>The Official Fan Hub of Mumbai Indians</p>
+            <div class="hero-buttons">
+                <a href="schedule.html" class="btn btn-primary">View Schedule</a>
+                <a href="players.html" class="btn btn-secondary">Meet The Team</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="countdown-section">
+        <div class="countdown-container">
+            <h2>Next Match Countdown</h2>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number">12</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number">06</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number">45</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number">30</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            <div class="next-match-info">
+                <h3>Mumbai Indians vs Chennai Super Kings</h3>
+                <div class="next-match-teams">
+                    <div class="team">
+                        <img src="Images/mi-logo.png" alt="Mumbai Indians">
+                        <span>Mumbai Indians</span>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="team">
+                        <img src="Images/Csk.png" alt="Chennai Super Kings">
+                        <span>Chennai Super Kings</span>
+                    </div>
+                </div>
+                <div class="match-details">
+                    <p><i class="fas fa-calendar-alt"></i> April 20, 2025 | <i class="fas fa-clock"></i> 7:30 PM IST</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Wankhede Stadium, Mumbai</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Latest News</h2>
+            </div>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="Images/Team Practice Session.png" alt="Team Practice Session">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date"><i class="far fa-calendar"></i> April 5, 2025</div>
+                        <h3 class="news-title">MI Begins Intensive Training Camp Ahead of IPL 2025</h3>
+                        <p class="news-excerpt">The Mumbai Indians squad has started their pre-season training camp at the Reliance Cricket Ground in Mumbai with full intensity.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="Images/Rohit Sharma Press Conference.png" alt="Rohit Sharma Press Conference">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date"><i class="far fa-calendar"></i> April 2, 2025</div>
+                        <h3 class="news-title">Rohit Sharma: "We're Hungry for Another Title"</h3>
+                        <p class="news-excerpt">Captain Rohit Sharma expressed his confidence in the team's preparation for the upcoming IPL season during a press conference.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="Images/New Jersey Launch.png" alt="New Jersey Launch">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date"><i class="far fa-calendar"></i> March 28, 2025</div>
+                        <h3 class="news-title">MI Unveils New Jersey for IPL 2025 Season</h3>
+                        <p class="news-excerpt">The Mumbai Indians launched their new season jersey with a special event featuring players and team owners.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-players">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Featured Players</h2>
+            </div>
+            <div class="players-slider">
+                <div class="player-slide">
+                    <div class="player-image">
+                        <img src="Images/Rohit.png" alt="Rohit Sharma">
+                        <div class="player-number">45</div>
+                    </div>
+                    <div class="player-details">
+                        <h3 class="player-name">Rohit Sharma</h3>
+                        <p class="player-role">Captain | Batsman</p>
+                        <span class="player-type">Right-handed Batsman</span>
+                    </div>
+                </div>
+                
+                <div class="player-slide">
+                    <div class="player-image">
+                        <img src="Images/Boom.png" alt="Jasprit Bumrah">
+                        <div class="player-number">93</div>
+                    </div>
+                    <div class="player-details">
+                        <h3 class="player-name">Jasprit Bumrah</h3>
+                        <p class="player-role">Lead Bowler</p>
+                        <span class="player-type">Right-arm Fast</span>
+                    </div>
+                </div>
+                
+                <div class="player-slide">
+                    <div class="player-image">
+                        <img src="Images/360.png" alt="Suryakumar Yadav">
+                        <div class="player-number">63</div>
+                    </div>
+                    <div class="player-details">
+                        <h3 class="player-name">Suryakumar Yadav</h3>
+                        <p class="player-role">Vice Captain | Batsman</p>
+                        <span class="player-type">Right-handed Batsman</span>
+                    </div>
+                </div>
+                
+                <div class="player-slide">
+                    <div class="player-image">
+                        <img src="Images/Pandey.png" alt="Hardik Pandya">
+                        <div class="player-number">33</div>
+                    </div>
+                    <div class="player-details">
+                        <h3 class="player-name">Hardik Pandya</h3>
+                        <p class="player-role">All-rounder</p>
+                        <span class="player-type">Right-handed Batsman | Right-arm Medium</span>
+                    </div>
+                </div>
+                
+                <div class="player-slide">
+                    <div class="player-image">
+                        <img src="Images/Tilak.png" alt="Tilak Varma">
+                        <div class="player-number">41</div>
+                    </div>
+                    <div class="player-details">
+                        <h3 class="player-name">Tilak Verma</h3>
+                        <p class="player-role">Batsman</p>
+                        <span class="player-type">Left-handed Batsman</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sponsors-section">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Our Sponsors</h2>
+            </div>
+            <div class="sponsors-grid">
+                <div class="sponsor-item">
+                    <img src="Images/Lauritz.png" alt="Sponsor 1">
+                </div>
+                <div class="sponsor-item">
+                    <img src="Images/Jio.png" alt="Sponsor 2">
+                </div>
+                <div class="sponsor-item">
+                    <img src="Images/JioHotstar.png" alt="Sponsor 3">
+                </div>
+                <div class="sponsor-item">
+                    <img src="Images/USHA.png" alt="Sponsor 4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="Images/mi-logo.png" alt="Mumbai Indians Logo">
+                <p>The Mumbai Indians are a franchise cricket team based in Mumbai, representing the city in the Indian Premier League.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="Main.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="news.html"><i class="fas fa-chevron-right"></i> news</a></li>
+                    <li><a href="fan.html"><i class="fas fa-chevron-right"></i> Fan</a> </li>                
+                    <li><a href="players.html"><i class="fas fa-chevron-right"></i> Players</a></li>
+                    <li><a href="schedule.html"><i class="fas fa-chevron-right"></i> Schedule</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Wankhede Stadium, D Road, Churchgate, Mumbai, Maharashtra 400020</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+91 22 2285 8000</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@mumbaiindians.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Mumbai Indians Fan Website. This is an unofficial fan site and not affiliated with Mumbai Indians or IPL.</p>
+        </div>
+    </footer>
+</body>
+</html>

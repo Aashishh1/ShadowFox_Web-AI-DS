@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest News | Mumbai Indians</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* News Page Specific Styles */
+        :root {
+            --mi-blue: #004ba0;
+            --mi-gold: #ffc107;
+            --mi-dark: #002d62;
+            --mi-light: #e6f0fa;
+        }
+        
+        .news-hero {
+            background: linear-gradient(rgba(0, 75, 160, 0.8), rgba(0, 75, 160, 0.8)), 
+                        url('images/news-hero.jpg') no-repeat center center/cover;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .news-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--mi-gold);
+        }
+        
+        .news-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .news-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: 2px solid var(--mi-blue);
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--mi-blue);
+            color: white;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .news-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .news-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+        
+        .news-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--mi-gold);
+            color: var(--mi-blue);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-date {
+            color: var(--mi-blue);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .news-date i {
+            margin-right: 5px;
+        }
+        
+        .news-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--mi-dark);
+        }
+        
+        .news-excerpt {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            color: var(--mi-blue);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: var(--mi-gold);
+        }
+        
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+        
+        .newsletter-section {
+            background-color: var(--mi-light);
+            padding: 4rem 0;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .newsletter-section h2 {
+            color: var(--mi-blue);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .newsletter-section p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .newsletter-input:focus {
+            border-color: var(--mi-blue);
+        }
+        
+        .newsletter-btn {
+            background-color: var(--mi-blue);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-btn:hover {
+            background-color: var(--mi-dark);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            gap: 0.5rem;
+        }
+        
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: white;
+            color: var(--mi-blue);
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .page-btn.active, .page-btn:hover {
+            background-color: var(--mi-blue);
+            color: white;
+            border-color: var(--mi-blue);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .news-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 30px;
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-btn {
+                border-radius: 30px;
+                padding: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .news-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="Images/mi-logo.png" alt="Mumbai Indians Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Main.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="schedule.html"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                    <li><a href="fan.html"><i class="fas fa-chevron-right"></i> Fan</a> </li> 
+                    <li><a href="players.html"><i class="fas fa-users"></i> Players</a></li>
+                    <li><a href="news.html" class="active"><i class="fas fa-newspaper"></i> News</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="news-hero">
+        <h1>MI NEWS & UPDATES</h1>
+        <p>Stay updated with the latest from Mumbai Indians</p>
+    </section>
+
+    <div class="news-container">
+        <div class="news-filter">
+            <button class="filter-btn active">All News</button>
+            <button class="filter-btn">Match Reports</button>
+            <button class="filter-btn">Player News</button>
+            <button class="filter-btn">Team Updates</button>
+            <button class="filter-btn">Community</button>
+        </div>
+        
+        <div class="news-grid">
+            <!-- News Article 1 -->
+            <article class="news-card">
+                <div class="news-image">
+                    <img src="Images/Team Practice Session.png" alt="MI Team Practice">
+                    <span class="news-badge">Team Updates</span>
+                </div>
+                <div class="news-content">
+                    <div class="news-date"><i class="far fa-calendar"></i> April 10, 2025</div>
+                    <h3 class="news-title">MI Begins Intensive Training Camp Ahead of Crucial Matches</h3>
+                    <p class="news-excerpt">The Mumbai Indians squad has started their special training camp at the Reliance Cricket Ground with full intensity as they prepare for the upcoming matches in IPL 2025.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            
+            <!-- News Article 2 -->
+            <article class="news-card">
+                <div class="news-image">
+                    <img src="Images/Rohit Sharma Press Conference.png" alt="Rohit Sharma Press Conference">
+                    <span class="news-badge">Player News</span>
+                </div>
+                <div class="news-content">
+                    <div class="news-date"><i class="far fa-calendar"></i> April 8, 2025</div>
+                    <h3 class="news-title">Rohit Sharma: "We're Building Momentum at the Right Time"</h3>
+                    <p class="news-excerpt">Captain Rohit Sharma expressed his confidence in the team's preparation and praised the young players for stepping up in crucial moments during the tournament.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            
+            <!-- News Article 3 -->
+            <article class="news-card">
+                <div class="news-image">
+                    <img src="Images/Team Practice Session.png" alt="MI vs CSK Match">
+                    <span class="news-badge">Match Report</span>
+                </div>
+                <div class="news-content">
+                    <div class="news-date"><i class="far fa-calendar"></i> April 5, 2025</div>
+                    <h3 class="news-title">MI Clinch Thrilling Victory Against CSK in Last-Over Finish</h3>
+                    <p class="news-excerpt">Mumbai Indians defeated Chennai Super Kings by 4 wickets in a nail-biting finish at Wankhede Stadium, with Tim David hitting the winning runs off the final ball.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            
+            <!-- News Article 4 -->
+            <article class="news-card">
+                <div class="news-image">
+                    <img src="Images/Boom.png" alt="Jasprit Bumrah Bowling">
+                    <span class="news-badge">Player News</span>
+                </div>
+                <div class="news-content">
+                    <div class="news-date"><i class="far fa-calendar"></i> April 3, 2025</div>
+                    <h3 class="news-title">Bumrah Returns to Form With 5-Wicket Haul Against RCB</h3>
+                    <p class="news-excerpt">Jasprit Bumrah's sensational bowling performance of 5/18 helped Mumbai Indians restrict Royal Challengers Bangalore to a modest total at the M. Chinnaswamy Stadium.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            
+            <!-- News Article 5 -->
+            <article class="news-card">
+                <div class="news-image">
+                    <img src="Images/mi-logo.png" alt="MI Academy">
+                    <span class="news-badge">Community</span>
+                </div>
+                <div class="news-content">
+                    <div class="news-date"><i class="far fa-calendar"></i> March 30, 2025</div>
+                    <h3 class="news-title">MI Launches Cricket Academy for Underprivileged Children</h3>
+                    <p class="news-excerpt">Mumbai Indians announced the launch of their new cricket academy aimed at providing free coaching and facilities to underprivileged children across Maharashtra.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            
+            <!-- News Article 6 -->
+            <article class="news-card">
+                <div class="news-image">
+                    <img src="Images/New Jersey Launch.png" alt="MI Jersey">
+                    <span class="news-badge">Team Updates</span>
+                </div>
+                <div class="news-content">
+                    <div class="news-date"><i class="far fa-calendar"></i> March 28, 2025</div>
+                    <h3 class="news-title">MI Unveils Special Edition Jersey for IPL 2025</h3>
+                    <p class="news-excerpt">The Mumbai Indians launched their new season jersey with a special sustainability theme, made from recycled materials, at an event featuring players and team owners.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+        
+        <div class="pagination">
+            <div class="page-btn"><i class="fas fa-chevron-left"></i></div>
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <div class="page-btn"><i class="fas fa-chevron-right"></i></div>
+        </div>
+    </div>
+    
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <h2>Stay Updated With MI</h2>
+            <p>Subscribe to our newsletter for the latest news, match updates, and exclusive content delivered to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="Images/mi-logo.png" alt="Mumbai Indians Logo">
+                <p>The Mumbai Indians are a franchise cricket team based in Mumbai, representing the city in the Indian Premier League.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="Main.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="schedule.html"><i class="fas fa-chevron-right"></i> Schedule</a></li>
+                    <li><a href="fan.html"><i class="fas fa-chevron-right"></i> Fan</a> </li> 
+                    <li><a href="players.html"><i class="fas fa-chevron-right"></i> Players</a></li>
+                    <li><a href="news.html"><i class="fas fa-chevron-right"></i> News</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Wankhede Stadium, D Road, Churchgate, Mumbai, Maharashtra 400020</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+91 22 2285 8000</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@mumbaiindians.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Mumbai Indians Fan Website. This is an unofficial fan site and not affiliated with Mumbai Indians or IPL.</p>
+        </div>
+    </footer>
+</body>
+</html>
