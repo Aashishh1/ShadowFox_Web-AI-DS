@@ -106,6 +106,4 @@ The internship highlighted the power of data in driving decisions and the import
 
 I am immensely grateful to ShadowFox for providing me with this opportunity to grow as a data scientist. My sincere thanks to my mentor, Mr. Hariharan, for his invaluable guidance and encouragement. I am also thankful to Mr. Aakash, the coordinator, for his prompt support and clear communication, particularly regarding task requirements and deadlines.
 
-I extend my gratitude to my university for fostering an environment that values practical learning and to my peers for their collaborative spirit. This internship would not have been possible without the collective support of everyone involved.
-
 ---
