@@ -1,13 +1,19 @@
-# Internship Final Report
+<div align='center'><img style="width:30%" src='https://github.com/user-attachments/assets/05cbfb3f-4d0b-413c-bc6b-aa985351a3fb'/></div>
 
-**Student Name:** Aashish Mishra  
-**University:** University Of Mumbai  
-**Major:** Electronics Computer Science
-**Internship Duration:** February 1st, 2025 - February 28th, 2025  
-**Company:** ShadowFox  
-**Domain:** Data Science  
-**Mentor:** Mr. Hariharan  
-**Coordinator:** Mr. Aakash  
+## 🎓 Internship Final Report
+
+
+| **Field**              | **Details**                          |
+|-------------------------|--------------------------------------|
+| Student Name            | Ashish Mishra                        |
+| University              | University Of Mumbai                 |
+| Major                   | Electronics Computer Science         |
+| Internship Duration     | February 1st, 2025 - February 28th, 2025 |
+| Company                 | ShadowFox                            |
+| Domain                  | Data Science                         |
+| Mentor                  | Mr. Hariharan                        |
+| Coordinator             | Mr. Aakash                           |
+
 
 ---
 
