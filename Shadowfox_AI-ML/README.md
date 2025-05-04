@@ -8,7 +8,7 @@
 | Student Name            | Ashish Mishra                        |
 | University              | University Of Mumbai                 |
 | Major                   | Electronics Computer Science         |
-| Internship Duration     | February 1st, 2025 - February 28th, 2025 |
+| Internship Duration     | April 1, 2025 - May 5, 2025 |
 | Company                 | ShadowFox                            |
 | Domain                  | AI/ML |
 | Mentor                  | Mr. Hariharan                        |
