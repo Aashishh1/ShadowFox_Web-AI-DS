@@ -1,3 +1,7 @@
+<div align='center'><img style="width:30%" src='https://github.com/user-attachments/assets/05cbfb3f-4d0b-413c-bc6b-aa985351a3fb'/></div>
+
+
+
 # Internship Final Report
 
 | Field                 | Details                     |
