@@ -44,6 +44,8 @@ I completed a diverse set of tasks across **beginner**, **intermediate**, and **
 - 🎥 Shared video explanations as POW on LinkedIn, tagging ShadowFox.
 - 🔄 Managed version control with Git for organized codebases.
 
+[Certificate](https://github.com/user-attachments/files/20813330/Ashish.Mishra.ai.pdf)
+
 ### 📊 Data Science Tasks
 | **Level**       | **Task**                              | **Description**                                                                 |
 |------------------|---------------------------------------|---------------------------------------------------------------------------------|
