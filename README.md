@@ -57,6 +57,9 @@ I completed a diverse set of tasks across **beginner**, **intermediate**, and **
 - 🗂️ Maintained a structured GitHub repository for code and reports.
 - 📢 Prepared LinkedIn POW videos to showcase data insights.
 
+[Certificate](https://github.com/user-attachments/files/20813417/Ashish.Mishra.data.science.pdf)
+
+
 ### 🌐 Web Development Tasks
 | **Level**       | **Task**                              | **Description**                                                                 |
 |------------------|---------------------------------------|---------------------------------------------------------------------------------|
@@ -66,6 +69,9 @@ I completed a diverse set of tasks across **beginner**, **intermediate**, and **
 **Additional Responsibilities:**
 - 🛠️ Tested for cross-browser compatibility using Chrome DevTools.
 - ⚡ Optimized performance by reducing image sizes and using CSS media queries.
+
+[Certificate](https://github.com/user-attachments/files/20813441/Ashish.Mishra.web.pdf)
+
 
 ---
 
